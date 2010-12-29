@@ -65,8 +65,8 @@ while True:
       irc.send ('QUIT :by direct order\r\n')
       sys.exit()
    if data.find (':!die') !=-1:
-      irc.send ( 'PRIVMSG #offtopic :Access denied. This incident will be reported.\r\n')
-      irc.send ( 'PRIVMSG Tanner :Someone tried to shut me down!\r\n')
+      irc.send ( 'PRIVMSG #Channel :Access denied. This incident will be reported.\r\n')
+      irc.send ( 'PRIVMSG YourName :Someone tried to shut me down!\r\n')
 
 
 
