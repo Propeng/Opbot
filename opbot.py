@@ -43,7 +43,9 @@ import time
 import re
 
 randnum = random.randint(1, 10000)
+shutdowncmd = "!die " + str(randnum)
 print randnum
+print shutdowncmd
 network = 'server.server.org'
 port = 6667
 irc = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
@@ -59,11 +61,12 @@ while True:
       irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
    if data.find ( '376' ) != -1:
       irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
-   if data.find(':!die %s' % str(randnum)) != -1:
-      irc.send (':QUIT \r\n')
+   if data.find(shutdowncmd) != -1:
+      irc.send ('QUIT :by direct order\r\n')
+      sys.exit()
    if data.find (':!die') !=-1:
-      irc.send ( 'PRIVMSG #Channel :Access denied. This incident will be reported.\r\n')
-      irc.send ( 'PRIVMSG YourName :Someone tried to shut me down!\r\n')
+      irc.send ( 'PRIVMSG #offtopic :Access denied. This incident will be reported.\r\n')
+      irc.send ( 'PRIVMSG Tanner :Someone tried to shut me down!\r\n')
 
 
 
