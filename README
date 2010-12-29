@@ -1,0 +1,7 @@
+USAGE: python opbot.py
+
+
+How to add replies:
+   if data.find ( 'What does bot see?') !=-1:
+      irc.send ( 'PRIVMSG #channel :Your response\r\n')
+Important: There MUST be "\r\n" after your response, otherwise it will not work.
