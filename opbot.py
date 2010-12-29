@@ -60,7 +60,7 @@ while True:
       irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
    if data.find(':!die %s' % str(randnum)):
       irc.send (':QUIT \r\n')
-   if data.find (':!die') !=-1:
+   if data.find(':!die %s' % str(randnum)) != -1:
       irc.send ( 'PRIVMSG #Channel :Access denied. This incident will be reported.\r\n')
       irc.send ( 'PRIVMSG YourName :Someone tried to shut me down!\r\n')
 
