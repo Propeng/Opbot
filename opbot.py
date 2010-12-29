@@ -21,6 +21,7 @@
 # Tanner Filip <tanner@techessentials.org>
 # David Vo <aucg@geekbouncer.co.uk>
 # DeltaQuad <deltaquad@live.ca>
+# Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
 # the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
@@ -58,9 +59,9 @@ while True:
       irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
    if data.find ( '376' ) != -1:
       irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
-   if data.find(':!die %s' % str(randnum)):
-      irc.send (':QUIT \r\n')
    if data.find(':!die %s' % str(randnum)) != -1:
+      irc.send (':QUIT \r\n')
+   if data.find (':!die') !=-1:
       irc.send ( 'PRIVMSG #Channel :Access denied. This incident will be reported.\r\n')
       irc.send ( 'PRIVMSG YourName :Someone tried to shut me down!\r\n')
 
