@@ -36,37 +36,62 @@
 #
 # ***** END LICENSE BLOCK *****
 
-
+	#IMPORT REQUIRED MODULES
 import socket
 import random
 import time
 import re
 
+	#CHANGE THESE SETTINGS
+#Enter your name
+owner = "YourName"
+#Enter the name of your bot
+botname = "YouBotsName"
+#Enter the server you want the bot to connect to
+server = "YourServer"
+#Enter the port you want the bot to connect to the server on
+portnum = "YourPort"
+#Enter the channel you would like your bot to join
+channel = "YourChannel"
+
+	
+	#CONNECTING
 randnum = random.randint(1, 10000)
 shutdowncmd = "!die " + str(randnum)
-print randnum
-print shutdowncmd
-network = 'server.server.org'
-port = 6667
+network = server
+port = portnum
 irc = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
 irc.connect ( ( network, port ) )
 print irc.recv ( 4096 )
-irc.send ( 'NICK Nickname\r\n' )
+
+	#SET NICKS AND USERNAMES
+irc.send ( 'NICK %s\r\n' % botname)
 irc.send ( 'USER Python IRC bot :Python IRC\r\n' )
 time.sleep(0.5)
 
+	#THE BOT'S BEHAVIOR AND ACTIONS
 while True:
-   data = irc.recv ( 4096 )
-   if data.find ( 'PING' ) != -1:
-      irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
-   if data.find ( '376' ) != -1:
-      irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
-   if data.find(shutdowncmd) != -1:
-      irc.send ('QUIT :by direct order\r\n')
-      sys.exit()
-   if data.find (':!die') !=-1:
-      irc.send ( 'PRIVMSG #Channel :Access denied. This incident will be reported.\r\n')
-      irc.send ( 'PRIVMSG YourName :Someone tried to shut me down!\r\n')
+	data = irc.recv ( 4096 )
+	
+		#PINGS AND PONGS
+	if data.find ( 'PING' ) != -1:
+		irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
+		
+		#JOINING CHANNELS, SENDING THE RANDOM NUMBER
+	if data.find ( '376' ) != -1:
+		irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
+		irc.send ( 'JOIN %s\r\n' % channel)
+		
+		#SHUTTING DOWN WHEN FINDING THE RANDOM NUMBER
+	if data.find(shutdowncmd) != -1:
+		irc.send ('QUIT :by direct order\r\n')
+		sys.exit()
+		
+		#REFUSING TO SHUT DOWN TO STRANGERS
+	if data.find (':!die') !=-1:
+		irc.send ( 'PRIVMSG %s :Access denied. This incident will be reported.\r\n' % channel)
+		irc.send ( 'PRIVMSG %s :Someone tried to shut me down!\r\n' % owner)
+
 
 
 
