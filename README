@@ -5,3 +5,9 @@ How to add replies:
    if data.find ( 'What does bot see?') !=-1:
       irc.send ( 'PRIVMSG #channel :Your response\r\n')
 Important: There MUST be "\r\n" after your response, otherwise it will not work.
+
+Example for channel mode bot:
+   if data.find ( ':!M;) !=-1
+     irc.send ( 'MODE #channel +M\r\n')
+
+Note: The colon (:) makes the bot only watch for the command (Instead of replying to everything that has "!help" in it, it would only reply to a line with "!help" in it, for example)
