@@ -13,7 +13,7 @@
 #
 # The Original Code is an IRC bot.
 #
-# The Initial Developer of the Original Code is Tanner Filip, et al.
+# The Initial Developer of the Original Code is Tanner Filip.
 # Portions created by the Initial Developer are Copyright (C) 2010
 # the Initial Developer. All Rights Reserved.
 #
@@ -22,6 +22,8 @@
 # David Vo <aucg@geekbouncer.co.uk>
 # DeltaQuad <deltaquad@live.ca>
 # Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+# Nic Matthew <nic.matthew@gmail.com>
+#
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
 # the GNU Lesser General Public License Version 2.1 or later (the "LGPL"),
