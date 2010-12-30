@@ -71,30 +71,30 @@ time.sleep(0.5)
 
 	#THE BOT'S BEHAVIOR AND ACTIONS
 while True:
-	data = irc.recv ( 4096 )
+   data = irc.recv ( 4096 )
 	
 		#PINGS AND PONGS
-	if data.find ( 'PING' ) != -1:
-		irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
+   if data.find ( 'PING' ) != -1:
+    irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
 		
 		#JOINING CHANNELS, SENDING THE RANDOM NUMBER
-	if data.find ( '376' ) != -1:
-		irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
-		irc.send ( 'JOIN %s\r\n' % channel)
+   if data.find ( '376' ) != -1:
+    irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
+    irc.send ( 'JOIN %s\r\n' % channel)
 		
 		#SHUTTING DOWN WHEN FINDING THE RANDOM NUMBER
-	if data.find(shutdowncmd) != -1:
-		irc.send ('QUIT :by direct order\r\n')
-		sys.exit()
+   if data.find(shutdowncmd) != -1:
+    irc.send ('QUIT :by direct order\r\n')
+    sys.exit()
 		
 		#REFUSING TO SHUT DOWN TO STRANGERS
-	if data.find ('!die') !=-1:
-		irc.send ( 'PRIVMSG %s :Access denied. This incident will be reported.\r\n' % channel)
-		irc.send ( 'PRIVMSG %s :Someone tried to shut me down!\r\n' % owner)
+   if data.find ('!die') !=-1:
+    irc.send ( 'PRIVMSG %s :Access denied. This incident will be reported.\r\n' % channel)
+    irc.send ( 'PRIVMSG %s :Someone tried to shut me down!\r\n' % owner)
 
                 #REJOIN ON KICK
-	if data.find ('KICK') !=-1:
-		irc.send ( 'JOIN %s\r\n' % channel)
+   if data.find ('KICK') !=-1:
+    irc.send ( 'JOIN %s\r\n' % channel)
 
 
 print data
