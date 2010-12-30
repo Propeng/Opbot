@@ -46,22 +46,20 @@ import re
 
 	#CHANGE THESE SETTINGS
 #Enter your name
-owner = "YourName"
+owner = "NicHelps"
 #Enter the name of your bot
-botname = "YouBotsName"
+botname = "YourBotsName"
 #Enter the server you want the bot to connect to
-server = "YourServer"
-#Enter the port you want the bot to connect to the server on
-portnum = "YourPort"
+network = "irc.server.com"
+#Enter the port you want the bot to connect on (**NO QUOTES!**)
+port = 6667
 #Enter the channel you would like your bot to join
-channel = "YourChannel"
+channel = "#channel"
 
 	
 	#CONNECTING
 randnum = random.randint(1, 10000)
 shutdowncmd = "!die " + str(randnum)
-network = server
-port = portnum
 irc = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
 irc.connect ( ( network, port ) )
 print irc.recv ( 4096 )
