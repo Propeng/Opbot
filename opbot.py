@@ -94,6 +94,9 @@ while True:
 		irc.send ( 'PRIVMSG %s :Access denied. This incident will be reported.\r\n' % channel)
 		irc.send ( 'PRIVMSG %s :Someone tried to shut me down!\r\n' % owner)
 
+                #REJOIN ON KICK
+	if data.find (KICK) !=-1
+		irc.send ( 'JOIN %s\r\n' % channel)
 
 
 
