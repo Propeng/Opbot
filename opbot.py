@@ -41,13 +41,13 @@
 import socket, random, time
 
 #bot settings
-owner = "NicHelps" #bot owner's name, used to notify about denying access etc
+owner = "BotOwner" #bot owner's name, used to notify about denying access etc
 botnick = "PythonOpbot" #bot nick
 botuser = "opbot" #bot username
 botreal = "Python IRC Opbot" #IRC real name
 network = "irc.server.com" #IRC sever name
 port = 6667 #server port, default 6667 (integer)
-channel = "#channel" #channels to join automatically, separated by commas
+channel = "#channel1,#channel2" #channels to join automatically, separated by commas
 
 #initializing and connecting to IRC server
 randnum = random.randint(1, 10000)
