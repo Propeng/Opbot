@@ -38,63 +38,56 @@
 #
 # ***** END LICENSE BLOCK *****
 
-	#IMPORT REQUIRED MODULES
-import socket
-import random
-import time
-import re
+import socket, random, time
 
-	#CHANGE THESE SETTINGS
-#Enter your name
-owner = "NicHelps"
-#Enter the name of your bot
-botname = "YourBotsName"
-#Enter the server you want the bot to connect to
-network = "irc.server.com"
-#Enter the port you want the bot to connect on (**NO QUOTES!**)
-port = 6667
-#Enter the channel you would like your bot to join
-channel = "#channel"
+#bot settings
+owner = "NicHelps" #bot owner's name, used to notify about denying access etc
+botnick = "PythonOpbot" #bot nick
+botuser = "opbot" #bot username
+botreal = "Python IRC Opbot" #IRC real name
+network = "irc.server.com" #IRC sever name
+port = 6667 #server port, default 6667 (integer)
+channel = "#channel" #channels to join automatically, separated by commas
 
-	
-	#CONNECTING
+#initializing and connecting to IRC server
 randnum = random.randint(1, 10000)
 shutdowncmd = "!die " + str(randnum)
-irc = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
-irc.connect ( ( network, port ) )
-print irc.recv ( 4096 )
+irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+irc.connect ((network, port))
 
-	#SET NICKS AND USERNAMES
-irc.send ( 'NICK %s\r\n' % botname)
-irc.send ( 'USER Python IRC bot :Python IRC\r\n' )
+#identifying
+irc.send("NICK %s\r\n" % botname)
+irc.send("USER %s %s %s :%s\r\n" % (botuser, network, network, botreal))
 time.sleep(0.5)
 
-	#THE BOT'S BEHAVIOR AND ACTIONS
+#socket receive loop
 while True:
-   data = irc.recv ( 4096 )
-	
-		#PINGS AND PONGS
-   if data.find ( 'PING' ) != -1:
-      irc.send ( 'PONG ' + data.split() [ 1 ] + '\r\n' )
-		
-		#JOINING CHANNELS, SENDING THE RANDOM NUMBER
-   if data.find ( '376' ) != -1:
-      irc.send ( 'PRIVMSG YourName :The random number is %d\r\n' % randnum)
-      irc.send ( 'JOIN %s\r\n' % channel)
-		
-		#SHUTTING DOWN WHEN FINDING THE RANDOM NUMBER
-   if data.find(shutdowncmd) != -1:
-      irc.send ('QUIT :by direct order\r\n')
+  raw = irc.recv(4096)
+  lines = raw.splitlines()
+
+  for line in lines: #TODO: IMPORTANT: correct argument parsing
+    print "[IN ] %s" % line
+    #TODO: print [OUT]
+
+    #pings and pongs
+    if line.find("PING") != -1:
+      irc.send("PONG " + line.split()[1] + "\r\n")
+
+    #joining channels
+    if line.find("376") != -1:
+      irc.send("PRIVMSG %s :The random number is %d\r\n" % (owner, randnum))
+      irc.send("JOIN %s\r\n" % channel)
+
+    #random number shutdown
+    if line.find(shutdowncmd) != -1:
+      irc.send("QUIT :by direct order\r\n")
       sys.exit()
-		
-		#REFUSING TO SHUT DOWN TO STRANGERS
-   if data.find ('!die') !=-1:
-      irc.send ( 'PRIVMSG %s :Access denied. This incident will be reported.\r\n' % channel)
-      irc.send ( 'PRIVMSG %s :Someone tried to shut me down!\r\n' % owner)
 
-                #REJOIN ON KICK
-   if data.find ('KICK') !=-1:
-      irc.send ( 'JOIN %s\r\n' % channel)
+    #denying access
+    if line.find("!die") != -1:
+      irc.send("PRIVMSG %s :Access denied. This incident will be reported.\r\n" % channel)
+      irc.send("PRIVMSG %s :Someone tried to shut me down!\r\n" % owner)
 
-
-print data
+    #rejoin on kick
+    if line.find("KICK") != -1:
+      irc.send("JOIN %s\r\n" % channel)
