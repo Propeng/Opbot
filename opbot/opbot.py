@@ -51,8 +51,8 @@ class Opbot():
     self.irc.connect ((options.network, options.port))
 
     #identifying
-    self.irc.send("NICK %s\r\n" % options.botnick)
-    self.irc.send("USER %s %s %s :%s\r\n" % (options.botuser, options.network, options.network, options.botreal))
+    self.send("NICK %s" % options.botnick)
+    self.send("USER %s %s %s :%s" % (options.botuser, options.network, options.network, options.botreal))
     time.sleep(0.5)
 
   def send(self, msg):
