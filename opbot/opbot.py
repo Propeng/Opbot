@@ -55,6 +55,10 @@ class Opbot():
     self.irc.send("USER %s %s %s :%s\r\n" % (options.botuser, options.network, options.network, options.botreal))
     time.sleep(0.5)
 
+  def send(self, msg):
+    print "[OUT] %s" % msg
+    self.irc.send("%s\r\n" % msg)
+
   def listen(self):
     #socket receive loop
     while True:
@@ -63,27 +67,26 @@ class Opbot():
 
       for line in lines: #TODO: IMPORTANT: correct argument parsing
         print "[IN ] %s" % line
-        #TODO: print [OUT]
 
         #pings and pongs
         if line.find("PING") != -1:
-          self.irc.send("PONG " + line.split()[1] + "\r\n")
+          self.send("PONG %s" % line.split()[1])
 
         #joining channels
         if line.find("376") != -1:
-          self.irc.send("PRIVMSG %s :The random number is %d\r\n" % (options.owner, self.randnum))
-          self.irc.send("JOIN %s\r\n" % options.channel)
+          self.send("PRIVMSG %s :The random number is %d" % (options.owner, self.randnum))
+          self.send("JOIN %s" % options.channel)
 
         #random number shutdown
         if line.find(self.shutdowncmd) != -1:
-          self.irc.send("QUIT :by direct order\r\n")
+          self.send("QUIT :by direct order")
           sys.exit()
 
         #denying access
         if line.find("!die") != -1:
-          self.irc.send("PRIVMSG %s :Access denied. This incident will be reported.\r\n" % options.channel)
-          self.irc.send("PRIVMSG %s :Someone tried to shut me down!\r\n" % options.owner)
+          self.send("PRIVMSG %s :Access denied. This incident will be reported." % options.channel)
+          self.send("PRIVMSG %s :Someone tried to shut me down!" % options.owner)
 
         #rejoin on kick
         if line.find("KICK") != -1:
-          self.irc.send("JOIN %s\r\n" % options.channel)
+          self.send("JOIN %s" % options.channel)
