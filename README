@@ -1,5 +1,6 @@
 USAGE: python opbot.py
-Warning: The examples below are extremely likely to be outdated, until a stable version in released.
+Warning: The examples below are extremely likely to be outdated, until a stable
+version is released.
 
 How to add replies:
    if data.find ( 'What does bot see?') !=-1:
@@ -10,4 +11,6 @@ Example for channel mode bot:
    if data.find ( ':!M;) !=-1
      irc.send ( 'MODE #channel +M\r\n')
 
-Note: The colon (:) makes the bot only watch for the command (Instead of replying to everything that has "!help" in it, it would only reply to a line with "!help" in it, for example)
+Note: The colon (:) makes the bot only watch for the command (Instead of
+replying to everything that has "!help" in it, it would only reply to a line
+with "!help" in it, for example)
