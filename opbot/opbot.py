@@ -18,7 +18,11 @@
 # the Initial Developer. All Rights Reserved.
 #
 # Contributor(s):
+# Tanner Filip <tanner@techessentials.org>
+# David Vo <aucg@geekbouncer.co.uk>
+# DeltaQuad <deltaquad@live.ca>
 # Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+# Nic Matthew <nic.matthew@gmail.com>
 #
 # Alternatively, the contents of this file may be used under the terms of
 # either the GNU General Public License Version 2 or later (the "GPL"), or
@@ -34,9 +38,49 @@
 #
 # ***** END LICENSE BLOCK *****
 
-from opbot import opbot
+import socket, random, time, sys
+#Opbot modules
+import options
 
-#uncomment after finishing class model
-#if __name__ == "__main__":
-#  bot = opbot.Opbot()
-#  bot.listen()
+#initializing and connecting to IRC server
+randnum = random.randint(1, 10000)
+shutdowncmd = "!die " + str(randnum)
+irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+irc.connect ((options.network, options.port))
+
+#identifying
+irc.send("NICK %s\r\n" % options.botnick)
+irc.send("USER %s %s %s :%s\r\n" % (options.botuser, options.network, options.network, options.botreal))
+time.sleep(0.5)
+
+#socket receive loop
+while True:
+  raw = irc.recv(4096)
+  lines = raw.splitlines()
+
+  for line in lines: #TODO: IMPORTANT: correct argument parsing
+    print "[IN ] %s" % line
+    #TODO: print [OUT]
+
+    #pings and pongs
+    if line.find("PING") != -1:
+      irc.send("PONG " + line.split()[1] + "\r\n")
+
+    #joining channels
+    if line.find("376") != -1:
+      irc.send("PRIVMSG %s :The random number is %d\r\n" % (options.owner, randnum))
+      irc.send("JOIN %s\r\n" % options.channel)
+
+    #random number shutdown
+    if line.find(shutdowncmd) != -1:
+      irc.send("QUIT :by direct order\r\n")
+      sys.exit()
+
+    #denying access
+    if line.find("!die") != -1:
+      irc.send("PRIVMSG %s :Access denied. This incident will be reported.\r\n" % options.channel)
+      irc.send("PRIVMSG %s :Someone tried to shut me down!\r\n" % options.owner)
+
+    #rejoin on kick
+    if line.find("KICK") != -1:
+      irc.send("JOIN %s\r\n" % options.channel)
