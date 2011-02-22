@@ -59,6 +59,22 @@ class Opbot():
     print "[OUT] %s" % msg
     self.irc.send("%s\r\n" % msg)
 
+  def parseline(self, line):
+    colonSplit = line.partition(" :")
+    isColonSplit = False
+    if colonSplit[1] == ' :':
+      isColonSplit = True
+
+    spaceSplit = colonSplit[0].split(' ')
+    if isColonSplit:
+      spaceSplit.append(colonSplit[2])
+
+    args = spaceSplit
+    command = args[0]
+    args.pop(0)
+
+    return (command, args)
+
   def listen(self):
     #socket receive loop
     while True:
