@@ -36,7 +36,7 @@
 
 from opbot import opbot
 
-#uncomment after finishing class model
-#if __name__ == "__main__":
-#  bot = opbot.Opbot()
-#  bot.listen()
+#start bot
+if __name__ == "__main__":
+  bot = opbot.Opbot()
+  bot.listen()

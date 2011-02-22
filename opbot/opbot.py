@@ -42,45 +42,48 @@ import socket, random, time, sys
 #Opbot modules
 import options
 
-#initializing and connecting to IRC server
-randnum = random.randint(1, 10000)
-shutdowncmd = "!die " + str(randnum)
-irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-irc.connect ((options.network, options.port))
+class Opbot():
+  def __init__(self):
+    #initializing and connecting to IRC server
+    self.randnum = random.randint(1, 10000)
+    self.shutdowncmd = "!die " + str(self.randnum)
+    self.irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    self.irc.connect ((options.network, options.port))
 
-#identifying
-irc.send("NICK %s\r\n" % options.botnick)
-irc.send("USER %s %s %s :%s\r\n" % (options.botuser, options.network, options.network, options.botreal))
-time.sleep(0.5)
+    #identifying
+    self.irc.send("NICK %s\r\n" % options.botnick)
+    self.irc.send("USER %s %s %s :%s\r\n" % (options.botuser, options.network, options.network, options.botreal))
+    time.sleep(0.5)
 
-#socket receive loop
-while True:
-  raw = irc.recv(4096)
-  lines = raw.splitlines()
+  def listen(self):
+    #socket receive loop
+    while True:
+      raw = self.irc.recv(4096)
+      lines = raw.splitlines()
 
-  for line in lines: #TODO: IMPORTANT: correct argument parsing
-    print "[IN ] %s" % line
-    #TODO: print [OUT]
+      for line in lines: #TODO: IMPORTANT: correct argument parsing
+        print "[IN ] %s" % line
+        #TODO: print [OUT]
 
-    #pings and pongs
-    if line.find("PING") != -1:
-      irc.send("PONG " + line.split()[1] + "\r\n")
+        #pings and pongs
+        if line.find("PING") != -1:
+          self.irc.send("PONG " + line.split()[1] + "\r\n")
 
-    #joining channels
-    if line.find("376") != -1:
-      irc.send("PRIVMSG %s :The random number is %d\r\n" % (options.owner, randnum))
-      irc.send("JOIN %s\r\n" % options.channel)
+        #joining channels
+        if line.find("376") != -1:
+          self.irc.send("PRIVMSG %s :The random number is %d\r\n" % (options.owner, self.randnum))
+          self.irc.send("JOIN %s\r\n" % options.channel)
 
-    #random number shutdown
-    if line.find(shutdowncmd) != -1:
-      irc.send("QUIT :by direct order\r\n")
-      sys.exit()
+        #random number shutdown
+        if line.find(self.shutdowncmd) != -1:
+          self.irc.send("QUIT :by direct order\r\n")
+          sys.exit()
 
-    #denying access
-    if line.find("!die") != -1:
-      irc.send("PRIVMSG %s :Access denied. This incident will be reported.\r\n" % options.channel)
-      irc.send("PRIVMSG %s :Someone tried to shut me down!\r\n" % options.owner)
+        #denying access
+        if line.find("!die") != -1:
+          self.irc.send("PRIVMSG %s :Access denied. This incident will be reported.\r\n" % options.channel)
+          self.irc.send("PRIVMSG %s :Someone tried to shut me down!\r\n" % options.owner)
 
-    #rejoin on kick
-    if line.find("KICK") != -1:
-      irc.send("JOIN %s\r\n" % options.channel)
+        #rejoin on kick
+        if line.find("KICK") != -1:
+          self.irc.send("JOIN %s\r\n" % options.channel)
