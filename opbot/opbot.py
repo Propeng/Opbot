@@ -83,10 +83,11 @@ class Opbot():
 
       for line in lines: #TODO: IMPORTANT: correct argument parsing
         print "[IN ] %s" % line
+        command, args = self.parseline(line)
 
         #pings and pongs
-        if line.find("PING") != -1:
-          self.send("PONG %s" % line.split()[1])
+        if command == "PING":
+          self.send("PONG :%s" % args[0])
 
         #joining channels
         if line.find("376") != -1:
