@@ -38,7 +38,7 @@
 #
 # ***** END LICENSE BLOCK *****
 
-import socket, random, time
+import socket, random, time, sys
 #Opbot modules
 from options import *
 
