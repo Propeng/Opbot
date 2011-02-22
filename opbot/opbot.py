@@ -75,6 +75,22 @@ class Opbot():
 
     return (command, args)
 
+  def parsemask(self, hostmask):
+    nickSplit = hostmask.partition("!")
+    hostSplit = nickSplit[2].partition("@")
+
+    nick = nickSplit[0]
+    user = hostSplit[0]
+    host = hostSplit[2]
+
+    if user == "":
+      userSplit = nick.partition("@")
+      nick = ""
+      user = userSplit[0]
+      host = userSplit[2]
+
+    return (nick, user, host)
+
   def listen(self):
     #socket receive loop
     while True:
