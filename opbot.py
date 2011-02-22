@@ -49,7 +49,7 @@ irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 irc.connect ((network, port))
 
 #identifying
-irc.send("NICK %s\r\n" % botname)
+irc.send("NICK %s\r\n" % botnick)
 irc.send("USER %s %s %s :%s\r\n" % (botuser, network, network, botreal))
 time.sleep(0.5)
 
