@@ -40,17 +40,17 @@
 
 import socket, random, time, sys
 #Opbot modules
-from options import *
+import options
 
 #initializing and connecting to IRC server
 randnum = random.randint(1, 10000)
 shutdowncmd = "!die " + str(randnum)
 irc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-irc.connect ((network, port))
+irc.connect ((options.network, options.port))
 
 #identifying
-irc.send("NICK %s\r\n" % botnick)
-irc.send("USER %s %s %s :%s\r\n" % (botuser, network, network, botreal))
+irc.send("NICK %s\r\n" % options.botnick)
+irc.send("USER %s %s %s :%s\r\n" % (options.botuser, options.network, options.network, options.botreal))
 time.sleep(0.5)
 
 #socket receive loop
@@ -68,8 +68,8 @@ while True:
 
     #joining channels
     if line.find("376") != -1:
-      irc.send("PRIVMSG %s :The random number is %d\r\n" % (owner, randnum))
-      irc.send("JOIN %s\r\n" % channel)
+      irc.send("PRIVMSG %s :The random number is %d\r\n" % (options.owner, randnum))
+      irc.send("JOIN %s\r\n" % options.channel)
 
     #random number shutdown
     if line.find(shutdowncmd) != -1:
@@ -78,9 +78,9 @@ while True:
 
     #denying access
     if line.find("!die") != -1:
-      irc.send("PRIVMSG %s :Access denied. This incident will be reported.\r\n" % channel)
-      irc.send("PRIVMSG %s :Someone tried to shut me down!\r\n" % owner)
+      irc.send("PRIVMSG %s :Access denied. This incident will be reported.\r\n" % options.channel)
+      irc.send("PRIVMSG %s :Someone tried to shut me down!\r\n" % options.owner)
 
     #rejoin on kick
     if line.find("KICK") != -1:
-      irc.send("JOIN %s\r\n" % channel)
+      irc.send("JOIN %s\r\n" % options.channel)
