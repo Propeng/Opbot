@@ -104,6 +104,15 @@ class Opbot():
         elif command == "ERROR":
           print "[ERR] %s" % args[0]
           sys.exit(0)
+        elif command.startswith(":"):
+          hostmask = command[1:]
+          command = args[0]
+          args = args[1:]
+          nick, user, host = self.parsemask(hostmask)
+
+          #autojoin on kick if not by owner
+          if command == "KICK" and nick != options.owner:
+            self.send("JOIN %s" % args[0])
 
         #joining channels
         if line.find("376") != -1:
@@ -118,7 +127,3 @@ class Opbot():
         if line.find("!die") != -1:
           self.send("PRIVMSG %s :Access denied. This incident will be reported." % options.channel)
           self.send("PRIVMSG %s :Someone tried to shut me down!" % options.owner)
-
-        #rejoin on kick
-        if line.find("KICK") != -1:
-          self.send("JOIN %s" % options.channel)
