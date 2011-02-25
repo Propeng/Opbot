@@ -100,6 +100,10 @@ class Opbot():
         #pings and pongs
         if command == "PING":
           self.send("PONG :%s" % args[0])
+        #error messages
+        elif command == "ERROR":
+          print "[ERR] %s" % args[0]
+          sys.exit(0)
 
         #joining channels
         if line.find("376") != -1:
@@ -109,7 +113,6 @@ class Opbot():
         #random number shutdown
         if line.find(self.shutdowncmd) != -1:
           self.send("QUIT :by direct order")
-          sys.exit()
 
         #denying access
         if line.find("!die") != -1:
