@@ -113,6 +113,9 @@ class Opbot():
           #autojoin on kick if not by owner
           if command == "KICK" and nick != options.owner:
             self.send("JOIN %s" % args[0])
+          #join on owner invite
+          elif command == "INVITE" and nick == options.owner and args[0] == options.botnick:
+            self.send("JOIN %s" % args[1])
 
         #joining channels
         if line.find("376") != -1:
