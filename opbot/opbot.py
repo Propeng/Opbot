@@ -110,17 +110,19 @@ class Opbot():
           args = args[1:]
           nick, user, host = self.parsemask(hostmask)
 
+          #server messages
+          if hostmask == options.network:
+            #joining channels
+            if command == "001":
+              self.send("PRIVMSG %s :The random number is %d" % (options.owner, self.randnum))
+              self.send("JOIN %s" % options.channel)
+
           #autojoin on kick if not by owner
-          if command == "KICK" and nick != options.owner:
+          elif command == "KICK" and nick != options.owner:
             self.send("JOIN %s" % args[0])
           #join on owner invite
           elif command == "INVITE" and nick == options.owner and args[0] == options.botnick:
             self.send("JOIN %s" % args[1])
-
-        #joining channels
-        if line.find("376") != -1:
-          self.send("PRIVMSG %s :The random number is %d" % (options.owner, self.randnum))
-          self.send("JOIN %s" % options.channel)
 
         #random number shutdown
         if line.find(self.shutdowncmd) != -1:
