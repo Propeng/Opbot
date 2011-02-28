@@ -1,0 +1,243 @@
+commit bd13ce9c705ae209f8d24bb3f13d66be019e678e
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Fri Feb 25 13:49:15 2011 +0200
+
+    join channels on 001
+
+commit 330e01b11a5ed0f5ae8926abcd53ef10a7dac954
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Fri Feb 25 13:25:40 2011 +0200
+
+    join on owner invite
+
+commit 815132e9422e1c1b508070c829dc6beda1a5c044
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Fri Feb 25 13:16:09 2011 +0200
+
+    join on kick
+
+commit d38b3a6b7efec3c036dc2662a1de42b0c4b4bd51
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Fri Feb 25 11:58:03 2011 +0200
+
+    error messages
+
+commit 240409adb771cf4c3d92047228bdcf5c69845fd1
+Author: Tanner Filip <tanner.sumo.bugs@gmail.com>
+Date:   Thu Feb 24 16:39:00 2011 -0800
+
+    etc
+
+commit 0dc95f8029f1ebbac3feedeaf9360db3ecd67a77
+Author: Tanner Filip <tanner.sumo.bugs@gmail.com>
+Date:   Thu Feb 24 16:38:28 2011 -0800
+
+    MPL, I choose you!
+
+commit 65d8353db282026c864d32c73b75ff00c0ac3dc7
+Author: Tanner Filip <tanner.sumo.bugs@gmail.com>
+Date:   Thu Feb 24 16:29:49 2011 -0800
+
+    rm license block; mv to its own file
+
+commit 2d0df2ec4c745417232a35cf0c548cc32fe4bb84
+Author: Tanner <tanner.sumo.bugs@gmail.com>
+Date:   Fri Feb 25 08:21:49 2011 +0800
+
+    Add license
+
+commit 0577b5ef6a2c9754e103805a430a01b95111c6d6
+Author: Tanner Filip <tanner.sumo.bugs@gmail.com>
+Date:   Thu Feb 24 16:27:21 2011 -0800
+
+    Moved license block to separate file
+
+commit 8f4a2b27cd451f1bb158fef14ee46a84d21e99e4
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 17:03:05 2011 +0200
+
+    init with send function
+
+commit e8e32457263b3eb7c8391abe3909da6740d24f22
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 16:02:35 2011 +0200
+
+    README typo, wrapped to 80 chars
+
+commit fbe47615f30caef543d313c726c24da1237fbd8e
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 15:57:10 2011 +0200
+
+    parsemask function
+
+commit 763494f64a38fb1eec36bd523e97266e257ff00d
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 15:47:17 2011 +0200
+
+    converting to arg parsing
+
+commit b693a36fa84dc63bcf23bcd4eb94c88574bee45b
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 15:40:06 2011 +0200
+
+    parseline function
+
+commit b31a844d156a8a97c67a3aac4bc1d6a143c1d33c
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 12:50:04 2011 +0200
+
+    send function and OUT messages
+
+commit ef3be19aa6e4aa4cbd47d5308bd63840a09ff401
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 12:45:56 2011 +0200
+
+    finished class model
+
+commit f471214e4df76149e8785d97cfd1066aeca7063c
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 12:38:45 2011 +0200
+
+    module model
+
+commit 5cb4b3353b71568fe9e85fe4c1d0a7c080cc90a2
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 12:31:15 2011 +0200
+
+    added gitignore
+
+commit 70582c51b3f8f7c6c925bad9eb24f988eaa40679
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 12:28:45 2011 +0200
+
+    moved options outside global ns
+
+commit 7001fcd158b8aaa3b351d2bcf1db7e52e3c0b7ce
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 12:18:40 2011 +0200
+
+    missing import sys
+
+commit ff7ca2b65c31f97c9bb13047073621028adb644f
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 12:12:03 2011 +0200
+
+    fixed botname
+
+commit fbbd1751dd7e45994a24ff27df97b8544fd05642
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 02:13:08 2011 +0200
+
+    split options.py
+
+commit 5bfcfeef1ad1d0b7043a358004e4c193c0a6b3d9
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 01:38:03 2011 +0200
+
+    updated README
+
+commit 03fdc7e2b2a6a1f6533dfb84638477f90e14881f
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 01:35:09 2011 +0200
+
+    improved examples
+
+commit 19972ca7006d6ffa7c34f16246ab079bca293392
+Author: Ahmed El-Mahdawy <aa.mahdawy.10@gmail.com>
+Date:   Tue Feb 22 01:33:01 2011 +0200
+
+    general improvements, preparing for overhaul
+
+commit 7b37dc4eaf706850aa76fae579a46a3e5f1acab7
+Author: Tanner Filip <tanner.sumo.bugs@gmail.com>
+Date:   Thu Dec 30 11:28:35 2010 -0600
+
+    Fix indents. My mistake!
+
+commit 6a666163158fe461c751609e8e0340f099d78a39
+Author: nmatthew <nic.matthew@gmail.com>
+Date:   Thu Dec 30 09:20:43 2010 -0800
+
+    Fixed indents
+
+commit 60143178bd40c803be216fb3a2d3db223fbb935a
+Author: nmatthew <nic.matthew@gmail.com>
+Date:   Thu Dec 30 09:18:22 2010 -0800
+
+    Fix network and port connections
+
+commit 19ab600ccdbb676bb4051127aacda04a8692dca4
+Author: nmatthew <nic.matthew@gmail.com>
+Date:   Thu Dec 30 09:08:20 2010 -0800
+
+    Fixing rejoin on kick
+
+commit 5c996f5098ee7fe13bf073521c8fb566c7f670f5
+Author: nmatthew <nic.matthew@gmail.com>
+Date:   Thu Dec 30 08:55:28 2010 -0800
+
+    Add rejoin on kick
+
+commit e0091be04c38561c880e196104420fc19006be62
+Author: Tanner Filip <tanner.sumo.bugs@gmail.com>
+Date:   Thu Dec 30 10:43:51 2010 -0600
+
+    Add Nic to license block
+
+commit 203b120556c4bc5f760a8ee85e643d6104d2100c
+Author: nmatthew <nic.matthew@gmail.com>
+Date:   Thu Dec 30 07:47:24 2010 -0800
+
+commit 82824bd18068629c33596bb2ff646040202feca5
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 21:34:32 2010 -0600
+
+    Add IRC channel
+
+commit dc4b1b550f0100c956397cb93fbeac683dd7fb58
+Author: Tanner Filip <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 17:59:46 2010 -0800
+
+    add another example
+
+commit dc89db521fbad24c65acec5d01e2dfd3d877bdea
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 16:12:37 2010 -0600
+
+    Gah
+
+commit e49eaa424bc6952c1a6e0607870edcc3e1f463e3
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 16:08:37 2010 -0600
+
+    Fix shutdown command
+
+commit f77e17070aa4f71b0376acfecb9755d583c25dda
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 13:12:33 2010 -0600
+
+    Update license block
+
+commit 9d83b4f112971c40161e978e2ececd4389662bc7
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 13:08:34 2010 -0600
+
+    Update
+
+commit 0eee8574ce2740ef9d6818a332f604bf77a5f0f4
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 13:05:24 2010 -0600
+
+    First commit
+
+commit 74eb50bf34327e0f5d7bc11ccd922d54931ffe72
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 13:01:21 2010 -0600
+
+    Update
+
+commit 938bda621722dae57d39e6ef09cfe28032ba8110
+Author: Pilif12p <tanner.sumo.bugs@gmail.com>
+Date:   Wed Dec 29 12:55:59 2010 -0600
+
+    first commit
